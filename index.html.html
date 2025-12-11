@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Protocolo AcalmaMente + Detetive da Calma</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #d4fc79, #96e6a1);
+    color: #333;
+    text-align: center;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  p {
+    max-width: 700px;
+    margin: 10px auto;
+    line-height: 1.6;
+  }
+
+  #intro {
+    background: rgba(255,255,255,0.8);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+  }
+
+  button {
+    background: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 15px 30px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background: #4cae4c;
+    transform: scale(1.05);
+  }
+
+  #detetive-link {
+    display: none;
+    margin: 20px auto;
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 700px;
+  }
+
+  #detetive-link a {
+    color: #2c6e49;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .video-container {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .video {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    padding: 15px;
+  }
+
+  video {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .locked {
+    opacity: 0.6;
+  }
+
+  .locked::after {
+    content: "🔒 Sessão disponível em breve";
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #777;
+  }
+
+  footer {
+    margin-top: 40px;
+    font-size: 0.9em;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+  <div id="intro">
+    <h1>💫 Protocolo AcalmaMente + Detetive da Calma</h1>
+
+    <p>Você está prestes a viver uma jornada terapêutica completa para eliminar a ansiedade pela raiz.  
+    Ao entrar, você recebe <strong>2 acessos exclusivos</strong>:</p>
+
+    <p>🎮 <strong>Detetive da Calma</strong> — um jogo interativo que revela as causas ocultas da ansiedade.<br>
+    🌿 <strong>Protocolo AcalmaMente</strong> — 6 sessões de hipnoterapia liberadas a cada 3 dias.</p>
+
+    <p>💚 Dois acessos. Um propósito: te guiar até uma vida leve e serena.</p>
+
+    <button id="startBtn">Começar minha jornada</button>
+  </div>
+
+  <div id="detetive-link">
+    <h2>🔍 Acesse o jogo Detetive da Calma</h2>
+    <p><a href="https://devbotelho.github.io/teste-gratis-detetive-da-calma/" target="_blank">
+      Clique aqui para jogar agora
+    </a></p>
+  </div>
+
+  <div class="video-container" id="videos"></div>
+
+  <footer>Clínica AcalmaMente © 2025</footer>
+
+<script>
+const videos = [
+  { 
+    title: "Sessão Primeiro Contato com a Hipnoterapia", 
+    url: "Ansiedade.mp4"  // vídeo local
+  },
+  { title: "Sessão 1 – Ansiedade: O Reencontro com a Calma", url: "" },
+  { title: "Sessão 2 – Baixa Autoestima: A Redescoberta do Valor", url: "" },
+  { title: "Sessão 3 – Insônia: O Santuário do Sono", url: "" },
+  { title: "Sessão 4 – Acabar de Vez com a Ansiedade", url: "" },
+  { title: "Sessão 5 – Cura Emocional", url: "" },
+  { title: "Sessão 6 – Regressão Transformadora", url: "" }
+];
+
+document.getElementById("startBtn").addEventListener("click", () => {
+
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("detetive-link").style.display = "block";
+  document.getElementById("videos").style.display = "flex";
+
+  const container = document.getElementById("videos");
+  container.innerHTML = "";
+
+  videos.forEach((v, i) => {
+    const videoDiv = document.createElement("div");
+    videoDiv.className = "video";
+    const title = document.createElement("h3");
+    title.textContent = v.title;
+
+    if (i === 0) {
+      const videoTag = document.createElement("video");
+      videoTag.src = v.url;
+      videoTag.controls = true;
+
+      videoDiv.appendChild(title);
+      videoDiv.appendChild(videoTag);
+
+    } else {
+      videoDiv.classList.add("locked");
+      videoDiv.appendChild(title);
+    }
+
+    container.appendChild(videoDiv);
+  });
+});
+</script>
+
+</body>
+</html>
